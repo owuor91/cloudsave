@@ -20,9 +20,10 @@ import java.net.MalformedURLException;
 
 public class MainActivity extends ActionBarActivity {
     private MobileServiceClient mClient;
-    private MobileServiceTable<Mobitext> mTable = mClient.getTable(Mobitext.class);
+    private MobileServiceTable<Mobitext> mTable;
     private EditText et1;
     private Button btn;
+    private Mobitext mobitext = new Mobitext();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,21 +41,21 @@ public class MainActivity extends ActionBarActivity {
     }
 
 
-
     public void addRecord(){
-        final Mobitext mobitext = new Mobitext();
-        mobitext.Word = "Awesome!";
-
+        mobitext.Word = "Amazing!";
+        //mTable = mClient.getTable(Mobitext.class);
 
         new AsyncTask<Void, Void, Void>(){
-            try{
-                mTable.insert(mobitext).get();
+            @Override
+            protected Void doInBackground(Void... params) {
+                try {
+                    mTable.insert(mobitext).get();
+                }
+                catch (Exception e){
+                    e.printStackTrace();
+                }
+                return null;
             }
-            catch(Exception e){
-                createAndShowDialog(e, "Error");
-            }
-            return null;
         }.execute();
     }
-
 }

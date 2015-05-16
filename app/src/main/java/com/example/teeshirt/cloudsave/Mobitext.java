@@ -6,8 +6,5 @@ package com.example.teeshirt.cloudsave;
 public class Mobitext {
     public String Word;
 
-    /*public String setWord(String word){
-     Word = word;
-        return Word;
-    }*/
+
 }
