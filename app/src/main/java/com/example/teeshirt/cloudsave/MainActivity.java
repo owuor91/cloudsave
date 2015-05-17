@@ -24,6 +24,7 @@ public class MainActivity extends ActionBarActivity {
     private EditText et1;
     private Button btn;
     private Mobitext mobitext = new Mobitext();
+    private String text;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,13 +40,23 @@ public class MainActivity extends ActionBarActivity {
         }
         //addRecord();
 
+    }
+
+    public void btnClick(){
+        btn = (Button)findViewById(R.id.btn);
+        et1 = (EditText)findViewById(R.id.et1);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                 text = et1.getText().toString();
+            }
+        });
 
     }
 
-
     public void addRecord(){
 
-        mobitext.Word = "Amazing!";
+        mobitext.Word = text;
         new AsyncTask<Void, Void, Void>(){
             @Override
             protected Void doInBackground(Void... params) {
